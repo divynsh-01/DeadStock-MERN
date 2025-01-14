@@ -40,15 +40,15 @@ exports.getSingleOrder = catchAsyncErrors(async(req,res,next)=>{
 
 // Get logged in user orders
 exports.myOrders = catchAsyncErrors(async(req,res,next)=>{
-    const order = await Order.find({user: req.user._id})
+    const orders = await Order.find({user: req.user._id})
 
-    if(!order){
+    if(!orders){
         return next(new ErrorHandler("Order not found with this id",404))
     }
 
     res.status(200).json({
         success:true,
-        order
+        orders
     })
 
 })
